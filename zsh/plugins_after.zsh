@@ -14,6 +14,13 @@ if [ ! -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlightin
 fi
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# check if zsh-autosuggestions is installed
+if [ ! -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    echo "zsh-autosuggestions not found, installing..."
+    brew install zsh-autosuggestions
+fi
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 if [[ "$(tput colors)" == "256" ]]; then
