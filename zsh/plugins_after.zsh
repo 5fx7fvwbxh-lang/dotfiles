@@ -2,11 +2,6 @@
 
 # Syntax highlighting
 
-# check if brew is installed
-if ! command -v brew >/dev/null 2>&1; then
-    echo "brew not found, skipping zsh-syntax-highlighting plugin"
-    return
-fi
 # check if zsh-syntax-highlighting is installed
 if [ ! -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
     echo "zsh-syntax-highlighting not found, installing..."
