@@ -105,6 +105,8 @@
 
 [user]
 	useConfigOnly = true
+	email = plaza-homing-7e@icloud.com
+	name = tlab
 
 [http]
 	cookieFile = ~/.gitcookies
