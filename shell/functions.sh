@@ -14,11 +14,20 @@ path_prepend() {
 
 here() {
     local loc
+    local target_path
     if [ "$#" -eq 1 ]; then
-        loc=$(realpath "$1")
+        target_path="$1"
     else
-        loc=$(realpath ".")
+        target_path="."
     fi
+    
+    # Use realpath if available (macOS 10.15+, Linux), fallback to cd/pwd
+    if command -v realpath &> /dev/null; then
+        loc=$(realpath "$target_path")
+    else
+        loc=$(cd "$target_path" && pwd)
+    fi
+    
     ln -sfn "${loc}" "$HOME/.shell.here"
     echo "here -> $(readlink $HOME/.shell.here)"
 }

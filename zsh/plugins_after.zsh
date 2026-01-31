@@ -2,19 +2,36 @@
 
 # Syntax highlighting
 
-# check if zsh-syntax-highlighting is installed
-if [ ! -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-    echo "zsh-syntax-highlighting not found, installing..."
-    brew install zsh-syntax-highlighting
+# Determine prefix based on OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    PLUGIN_PREFIX=$(brew --prefix)
+else
+    PLUGIN_PREFIX="/usr"
 fi
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# check if zsh-syntax-highlighting is installed
+if [ ! -f "$PLUGIN_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    echo "zsh-syntax-highlighting not found, installing..."
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install zsh-syntax-highlighting
+    else
+        echo "Please install zsh-syntax-highlighting using your package manager:"
+        echo "  Ubuntu/Debian: sudo apt install zsh-syntax-highlighting"
+    fi
+fi
+source $PLUGIN_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # check if zsh-autosuggestions is installed
-if [ ! -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+if [ ! -f "$PLUGIN_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     echo "zsh-autosuggestions not found, installing..."
-    brew install zsh-autosuggestions
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install zsh-autosuggestions
+    else
+        echo "Please install zsh-autosuggestions using your package manager:"
+        echo "  Ubuntu/Debian: sudo apt install zsh-autosuggestions"
+    fi
 fi
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $PLUGIN_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
