@@ -26,6 +26,9 @@ source ~/.shell/external.sh
 # Aliases
 source ~/.shell/aliases.sh
 
+# Auto-activate virtualenv if available
+auto_activate_venv
+
 # Custom prompt
 source ~/.zsh/prompt.zsh
 

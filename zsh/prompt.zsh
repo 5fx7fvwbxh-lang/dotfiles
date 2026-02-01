@@ -86,6 +86,14 @@ function PR_ARROW() {
     echo "%(!.%{$fg[red]%}.%{$fg[violet]%})${PR_ARROW_CHAR}%{$reset_color%}"
 }
 
+# Show virtualenv name if currently active
+function PR_VENV() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        local venv_name="$(basename "$VIRTUAL_ENV")"
+        echo "%{$fg[teal]%}($venv_name)%{$reset_color%} "
+    fi
+}
+
 # Set custom rhs prompt
 # User in red (for root) or violet (for regular user)
 RPR_SHOW_USER=true # Set to false to disable user in rhs prompt
@@ -303,14 +311,14 @@ function PR_VARS() {
 function PCMD() {
     if (( PROMPT_MODE == 0 )); then
         if $_vars_multiline; then
-            echo "$(PR_VARS)$(PR_EXTRA)$(PR_DIR) $(PR_ERROR)$(PR_ARROW) " # space at the end
+            echo "$(PR_VARS)$(PR_EXTRA)$(PR_DIR) $(PR_ERROR)$(PR_VENV)$(PR_ARROW) " # space at the end
         else
-            echo "$(PR_EXTRA)$(PR_DIR)$(PR_VARS) $(PR_ERROR)$(PR_ARROW) " # space at the end
+            echo "$(PR_EXTRA)$(PR_DIR)$(PR_VARS) $(PR_ERROR)$(PR_VENV)$(PR_ARROW) " # space at the end
         fi
     elif (( PROMPT_MODE == 1 )); then
-        echo "$(PR_EXTRA)$(PR_DIR 1) $(PR_ERROR)$(PR_ARROW) " # space at the end
+        echo "$(PR_EXTRA)$(PR_DIR 1) $(PR_ERROR)$(PR_VENV)$(PR_ARROW) " # space at the end
     else
-        echo "$(PR_EXTRA)$(PR_ERROR)$(PR_ARROW) " # space at the end
+        echo "$(PR_EXTRA)$(PR_ERROR)$(PR_VENV)$(PR_ARROW) " # space at the end
     fi
 }
 

@@ -47,3 +47,7 @@ bindkey "^R" history-incremental-search-backward
 
 # Disable shell builtins
 disable r
+
+# Set up chpwd hook for virtualenv auto-activation (safe: activation won't override prompt)
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd auto_activate_venv
