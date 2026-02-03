@@ -33,15 +33,23 @@ check_dependencies() {
         echo -e "\n${RED}Missing packages:${NC} ${missing_packages[*]}"
         
         if [[ "$OSTYPE" == "darwin"* ]]; then
-            echo -e "\n${YELLOW}macOS detected.${NC} Install using Homebrew:"
-            echo "  brew install ${missing_packages[*]}"
+            echo -e "\n${YELLOW}macOS detected.${NC} Installing with Homebrew..."
+            if ! command -v brew &> /dev/null; then
+                echo -e "${RED}Homebrew is not installed. Please install it first from https://brew.sh${NC}"
+                exit 1
+            fi
+            brew install ${missing_packages[*]}
         else
-            echo -e "\n${YELLOW}Linux detected.${NC} Install using your package manager:"
-            echo "  Ubuntu/Debian: sudo apt install ${missing_packages[*]}"
+            echo -e "\n${YELLOW}Linux detected.${NC} Installing with package manager..."
+            if command -v apt &> /dev/null; then
+                sudo apt update && sudo apt install -y ${missing_packages[*]}
+            else
+                echo -e "${RED}No support for this package manager. Please install manually: ${missing_packages[*]}${NC}"
+                exit 1
+            fi
         fi
         
-        echo -e "\n${RED}Please install the missing packages and run this script again.${NC}"
-        exit 1
+        echo -e "\n${GREEN}All missing packages have been installed!${NC}\n"
     fi
     
     echo -e "\n${GREEN}All required packages are installed!${NC}\n"
