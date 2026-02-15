@@ -113,6 +113,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
+	quotePath = false  # prevent git from quoting non-ASCII filenames
 
 [url "https://github.com/"]
 	insteadOf = git://github.com/
