@@ -17,6 +17,7 @@ if [ ! -f "$PLUGIN_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.
     else
         echo "Please install zsh-syntax-highlighting using your package manager:"
         echo "  Ubuntu/Debian: sudo apt install zsh-syntax-highlighting"
+        sudo apt install zsh-syntax-highlighting
     fi
 fi
 source $PLUGIN_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -29,6 +30,7 @@ if [ ! -f "$PLUGIN_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; 
     else
         echo "Please install zsh-autosuggestions using your package manager:"
         echo "  Ubuntu/Debian: sudo apt install zsh-autosuggestions"
+        sudo apt install zsh-autosuggestions
     fi
 fi
 source $PLUGIN_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
