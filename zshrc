@@ -26,6 +26,11 @@ source ~/.shell/external.sh
 # Aliases
 source ~/.shell/aliases.sh
 
+# shell initialization to hook
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+fi
+
 # Auto-activate virtualenv if available
 auto_activate_venv
 
