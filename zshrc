@@ -1,3 +1,8 @@
+if [ -z "${ZSH_VERSION:-}" ]; then
+    echo "~/.zshrc is a Zsh config. Start Zsh with: exec zsh" >&2
+    return 0 2>/dev/null || exit 0
+fi
+
 # Functions
 source ~/.shell/functions.sh
 
